@@ -3,4 +3,5 @@
     <string name="energy_level">Energy Level</string>
     <string name="enter">Enter</string>
     <string name="view">VIEW</string>
+    <string name="title_activity_log_view">log_view</string>
 </resources>

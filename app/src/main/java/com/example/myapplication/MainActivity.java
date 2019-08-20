@@ -3,10 +3,12 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -20,22 +22,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    final Day day = new Day();
-
-
     @TargetApi(Build.VERSION_CODES.O)
     public void enterButton(View view){
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
-        day.logEnergyNow(energy);
+
+        //temporary adding option to set hour
+        EditText hour_bar = findViewById(R.id.hour_bar);
+
+        String hString = hour_bar.getText().toString();
+        if (hString.length() == 0){
+            return;
+        }
+
+        int h = Integer.parseInt(hString);
+
+        Day.logEnergy(energy, h);
+
+
+
     }
 
     public void viewButton(View view){
-        List<String> results = day.display();
+        Intent viewIntent = new Intent (this, log_view.class);
 
-        for (String item : results) {
-            Toast display = Toast.makeText(this, item, Toast.LENGTH_SHORT);
-            display.show();
-        }
+        startActivity(viewIntent);
+
     }
 }
