@@ -89,7 +89,7 @@ public class Day {
 
         for (int i = 0; i < this.log.size(); i++){
             logEntry l = this.log.get(i);
-            int x = l.get_time().getHour();
+            int x = l.get_time().getHour();  // Add : if 45 > minutes > 15 , x += .5, if minutes > 45 x+=1 to round to nearest half hour
             int y = l.get_energy();
             DataPoint datum = new DataPoint(x, y);
             dataPoints[i] = datum;

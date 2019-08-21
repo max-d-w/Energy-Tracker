@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 
-        //temporary adding option to set hour
+        //temporarily adding option to set hour to enable app testing, likely to be removed
         EditText hour_bar = findViewById(R.id.hour_bar);
 
         String hString = hour_bar.getText().toString();

@@ -25,21 +25,13 @@ public class log_view extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         GraphView graph = (GraphView) findViewById(R.id.graph);
 
         Day day = Day.getDay();
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(day.pointify());
         graph.addSeries(series);
 
+        // Set bounds for the graph view
         graph.getViewport().setMinX(7);
         graph.getViewport().setMaxX(23);
         graph.getViewport().setMinY(0);
@@ -48,6 +40,7 @@ public class log_view extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setXAxisBoundsManual(true);
 
+        // Make datapoints visible on graph
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(15f);
 

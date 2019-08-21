@@ -30,6 +30,8 @@ public class logEntry {
         this._time = _time;
     }
 
+    // Constructors : if a logEntry is created without a variable for time the time used is the current time
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public logEntry(int energy) {
         this._energy = energy;
