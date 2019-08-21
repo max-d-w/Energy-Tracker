@@ -42,11 +42,14 @@ public class log_view extends AppCompatActivity {
 
         graph.getViewport().setMinX(7);
         graph.getViewport().setMaxX(23);
-        graph.getViewport().setMinY(1);
+        graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(10);
 
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setXAxisBoundsManual(true);
+
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(15f);
 
     }
 

@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/enter_button"
         tools:layout_editor_absoluteX="16dp" />
 
