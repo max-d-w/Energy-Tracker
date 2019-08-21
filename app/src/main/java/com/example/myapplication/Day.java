@@ -85,18 +85,27 @@ public class Day {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public DataPoint[] pointify(){
+
         DataPoint[] dataPoints = new DataPoint[this.log.size()];
 
-        for (int i = 0; i < this.log.size(); i++){
-            logEntry l = this.log.get(i);
-            int x = l.get_time().getHour();  // Add : if 45 > minutes > 15 , x += .5, if minutes > 45 x+=1 to round to nearest half hour
-            int y = l.get_energy();
-            DataPoint datum = new DataPoint(x, y);
-            dataPoints[i] = datum;
+        if (this.log.size() == 0){
+            return dataPoints;
         }
+
+        for (int i = 0; i < this.log.size(); i++){
+
+            DataPoint point = this.log.get(i).makePoint();
+
+            dataPoints[i] = point;
+        }
+
+        // DataPoints put into graphview need to be sorted according to x values
+
+
 
         return dataPoints;
 
     }
+
 
 }

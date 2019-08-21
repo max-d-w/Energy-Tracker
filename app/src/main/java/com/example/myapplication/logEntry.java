@@ -4,6 +4,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.jjoe64.graphview.series.DataPoint;
+
 import java.time.LocalTime;
 
 public class logEntry {
@@ -43,6 +45,15 @@ public class logEntry {
         this._time = time;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public DataPoint makePoint(){
+        int x = this.get_time().getHour();  // Add : if 45 > minutes > 15 , x += .5, if minutes > 45 x+=1 to round to nearest half hour
+        int y = this.get_energy();
+        DataPoint point = new DataPoint(x, y);
 
+        return point;
+
+
+    }
 
 }
