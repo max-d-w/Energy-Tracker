@@ -24,7 +24,7 @@ public class Day {
 
     // private LocalDate day; // ignore day until log is functional.
 
-    private List<logEntry> log = new ArrayList<>();
+    private List<logger> log = new ArrayList<>();
 
 
     /*public LocalDate getDay() {
@@ -54,36 +54,23 @@ public class Day {
 
     public static void logEnergy(int energyLevel, LocalTime time){
 
-        logEntry newLog = new logEntry(energyLevel, time);
+        energyLogger newLog = new energyLogger(energyLevel, time);
 
         day.log.add(newLog);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void logEnergy(int energyLevel, int hour){
         LocalTime time = LocalTime.of(hour, 0);
         logEnergy(energyLevel, time);
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void logEnergyNow (int energy){
         LocalTime time = LocalTime.now();
         logEnergy(energy, time);
     }
 
-    public String display(){
-        List currLog = this.getLog();
-        StringBuffer display = new StringBuffer();
 
-        for (Object l : currLog){
-            display.append(((logEntry) l).get_time() + " :  " + ((logEntry) l).get_energy() + "\n");
-        }
-
-        return display.toString();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public DataPoint[] pointify(){
 
         DataPoint[] dataPoints = new DataPoint[this.log.size()];

@@ -15,9 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
-public class log_view extends AppCompatActivity {
+public class logView extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,12 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
-import android.widget.Toast;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        int h = Integer.parseInt(hString);
+        int h = Integer.parseInt(hString);  // Temporarily here to allow me to input times for testing app
 
         Day.logEnergy(energy, h);
 
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewButton(View view){
-        Intent viewIntent = new Intent (this, log_view.class);
+        Intent viewIntent = new Intent (this, logView.class);
 
         startActivity(viewIntent);
 
