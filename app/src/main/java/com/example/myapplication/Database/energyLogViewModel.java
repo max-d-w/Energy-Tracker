@@ -1,3 +1,4 @@
+/*
 package com.example.myapplication.Database;
 
 import android.app.Application;
@@ -36,3 +37,4 @@ public class energyLogViewModel extends AndroidViewModel {
         return allLogs;
     }
 }
+*/

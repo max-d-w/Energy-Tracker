@@ -1,3 +1,4 @@
+/*
 package com.example.myapplication.Database;
 
 import android.app.Application;
@@ -79,3 +80,4 @@ public class energyLogRepository {
     }
 
 }
+*/

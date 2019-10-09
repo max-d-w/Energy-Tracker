@@ -10,7 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
+import com.example.myapplication.Database.energyLog;
+import com.example.myapplication.Database.energyLogDatabase;
+
+import java.time.LocalTime;
+
 public class MainActivity extends AppCompatActivity {
+
+    energyLogDatabase appDB = energyLogDatabase.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         int h = Integer.parseInt(hString);  // Temporarily here to allow me to input times for testing app
 
-        Day.logEnergy(energy, h);
+        energyLog newLog = new energyLog(energy, LocalTime.of(h, 0));
 
-
+        appDB.energyLogDao().insert(newLog);
 
     }
 

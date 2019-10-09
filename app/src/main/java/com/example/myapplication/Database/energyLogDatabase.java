@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {energyLog.class}, version = 1)
+@Database(entities = {energyLog.class}, version = 1, exportSchema = false)
 public abstract class energyLogDatabase extends RoomDatabase {
 
     private static energyLogDatabase instance;

@@ -3,6 +3,9 @@ package com.example.myapplication;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.myapplication.Database.energyLog;
+import com.example.myapplication.Database.energyLogDao;
+import com.example.myapplication.Database.energyLogDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.jjoe64.graphview.GraphView;
@@ -15,17 +18,23 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
-public class logView extends AppCompatActivity {
+import java.time.LocalDate;
+import java.util.List;
 
+public class logView extends AppCompatActivity {
+    private energyLogDatabase appDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appDB = energyLogDatabase.getInstance(this);
+
         setContentView(R.layout.activity_log_view);
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
 
-        Day day = Day.getDay();
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(day.pointify());
+        List<energyLog> day = appDB.energyLogDao().getLogsByDate(LocalDate.now().toString());
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(energyLog.pointify(day));
         graph.addSeries(series);
 
         // Set bounds for the graph view

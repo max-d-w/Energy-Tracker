@@ -28,5 +28,5 @@ public interface energyLogDao {
     List<energyLog> getAllEnergyLogs();
 
     @Query("SELECT * FROM energy_log_table WHERE date LIKE :thisDate")
-    List<energyLog> getLogsByDate(LocalDate thisDate);
+    List<energyLog> getLogsByDate(String thisDate);
 }
