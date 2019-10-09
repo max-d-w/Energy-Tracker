@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.example.myapplication.Database.energyLog;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Dao
@@ -24,5 +25,8 @@ public interface energyLogDao {
     void delete (energyLog log);
 
     @Query("SELECT * FROM energy_log_table")
-    LiveData<List<energyLog>> getAllEnergyLogs();
+    List<energyLog> getAllEnergyLogs();
+
+    @Query("SELECT * FROM energy_log_table WHERE date LIKE :thisDate")
+    List<energyLog> getLogsByDate(LocalDate thisDate);
 }

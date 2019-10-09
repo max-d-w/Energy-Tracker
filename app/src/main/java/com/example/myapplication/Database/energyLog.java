@@ -6,10 +6,9 @@ import androidx.room.PrimaryKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity(tableName = "energy_log_table")
+@Entity(tableName = "energy_log_table", primaryKeys = {"time", "date"})
 public class energyLog {
 
-    @PrimaryKey
     private LocalTime time;
 
     private LocalDate date;
