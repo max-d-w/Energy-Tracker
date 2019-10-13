@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,6 +33,9 @@ public class logView extends AppCompatActivity {
         setContentView(R.layout.activity_log_view);
 
         String date = getIntent().getExtras().getString("date");
+
+        TextView displayDate = findViewById(R.id.displayDate);
+        displayDate.setText(date);
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
 

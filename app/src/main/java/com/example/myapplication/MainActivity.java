@@ -33,17 +33,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 
-        //temporarily adding option to set hour to enable app testing, likely to be removed
-        EditText hour_bar = findViewById(R.id.hour_bar);
-
-        String hString = hour_bar.getText().toString();
-        if (hString.length() == 0){
-            return;
-        }
-
-        int h = Integer.parseInt(hString);  // Temporarily here to allow me to input times for testing app
-
-        energyLog newLog = new energyLog(energy, LocalTime.of(h, 0));
+        energyLog newLog = new energyLog(energy, LocalTime.now());
 
         appDB.energyLogDao().insert(newLog);
 
