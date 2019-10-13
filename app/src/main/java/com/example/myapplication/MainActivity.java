@@ -17,16 +17,18 @@ import java.time.LocalTime;
 
 public class MainActivity extends AppCompatActivity {
 
-    energyLogDatabase appDB = energyLogDatabase.getInstance(this);
+    private energyLogDatabase appDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        energyLogDatabase appDB = energyLogDatabase.getInstance(this);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
     public void enterButton(View view){
+        energyLogDatabase appDB = energyLogDatabase.getInstance(this);
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 

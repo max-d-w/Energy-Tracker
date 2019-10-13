@@ -17,7 +17,7 @@ public abstract class energyLogDatabase extends RoomDatabase {
         if (instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     energyLogDatabase.class, "energy_log_database")
-                    .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()          // Temporarily allowing main thread queries, fix later
                     .build();
         }
 
