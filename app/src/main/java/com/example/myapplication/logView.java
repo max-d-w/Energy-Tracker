@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -30,9 +31,11 @@ public class logView extends AppCompatActivity {
 
         setContentView(R.layout.activity_log_view);
 
+        String date = getIntent().getExtras().getString("date");
+
         GraphView graph = (GraphView) findViewById(R.id.graph);
 
-        List<energyLog> day = appDB.energyLogDao().getLogsByDate(LocalDate.now().toString());
+        List<energyLog> day = appDB.energyLogDao().getLogsByDate(date);
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(energyLog.pointify(day));
         graph.addSeries(series);

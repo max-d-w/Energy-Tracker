@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import com.example.myapplication.Database.energyLog;
 import com.example.myapplication.Database.energyLogDatabase;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewButton(View view){
         Intent viewIntent = new Intent (this, logView.class);
+        String date = LocalDate.now().toString();
+
+        viewIntent.putExtra("date", date);
 
         startActivity(viewIntent);
 
