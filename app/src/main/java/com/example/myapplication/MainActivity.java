@@ -13,22 +13,21 @@ import android.widget.SeekBar;
 import com.example.myapplication.Database.energyLog;
 import com.example.myapplication.Database.energyLogDatabase;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MainActivity extends AppCompatActivity {
 
-    private energyLogDatabase appDB;
+    energyLogDatabase appDB = energyLogDatabase.getInstance(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        energyLogDatabase appDB = energyLogDatabase.getInstance(this);
     }
 
     @TargetApi(Build.VERSION_CODES.O)
     public void enterButton(View view){
-        energyLogDatabase appDB = energyLogDatabase.getInstance(this);
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 
@@ -50,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewButton(View view){
         Intent viewIntent = new Intent (this, logView.class);
+
+        String date = LocalDate.now().toString();
+        viewIntent.putExtra("date", date);
 
         startActivity(viewIntent);
 
