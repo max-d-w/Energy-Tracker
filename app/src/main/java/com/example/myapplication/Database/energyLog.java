@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.example.myapplication.logger;
 import com.jjoe64.graphview.series.DataPoint;
 
 import java.time.LocalDate;

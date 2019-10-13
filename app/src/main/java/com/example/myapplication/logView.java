@@ -34,6 +34,8 @@ public class logView extends AppCompatActivity {
 
         List<energyLog> day = appDB.energyLogDao().getLogsByDate(LocalDate.now().toString());
 
+        // Must sort entries by X value to ensure the app doesn't crash
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(energyLog.pointify(day));
         graph.addSeries(series);
 
