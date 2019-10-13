@@ -28,10 +28,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class logView extends AppCompatActivity {
-    private energyLogDatabase appDB = energyLogDatabase.getInstance(this);
+    private energyLogDatabase appDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(null);
+        appDB = energyLogDatabase.getInstance(this);
 
         Intent viewIntent = getIntent();
 
