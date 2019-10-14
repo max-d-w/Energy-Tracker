@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 
-        energyLog newLog = new energyLog(energy, LocalTime.now());
+        energyLog newLog = new energyLog(energy);
 
         appDB.energyLogDao().insert(newLog);
 
