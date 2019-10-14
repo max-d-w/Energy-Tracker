@@ -26,12 +26,6 @@ public class energyLog {
         this.time = LocalTime.now().toString();
     }
 
-    public energyLog(int energyLevel, LocalTime time) {
-        this.energyLevel = energyLevel;
-        this.date = LocalDate.now().toString();
-        this.time = time.toString();
-    }
-
     public String getTime() {
         return time;
     }
