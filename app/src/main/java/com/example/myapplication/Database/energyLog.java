@@ -2,8 +2,6 @@ package com.example.myapplication.Database;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
 import com.jjoe64.graphview.series.DataPoint;
 

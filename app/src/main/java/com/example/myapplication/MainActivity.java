@@ -3,18 +3,23 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.example.myapplication.Database.energyLog;
 import com.example.myapplication.Database.energyLogDatabase;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,17 +38,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar bar = findViewById(R.id.energy_seek_bar);
         int energy = bar.getProgress();
 
-        //temporarily adding option to set hour to enable app testing, likely to be removed
-        EditText hour_bar = findViewById(R.id.hour_bar);
-
-        String hString = hour_bar.getText().toString();
-        if (hString.length() == 0){
-            return;
-        }
-
-        int h = Integer.parseInt(hString);  // Temporarily here to allow me to input times for testing app
-
-        energyLog newLog = new energyLog(energy, LocalTime.of(h, 0));
+        energyLog newLog = new energyLog(energy, LocalTime.now());
 
         appDB.energyLogDao().insert(newLog);
 
@@ -51,12 +46,54 @@ public class MainActivity extends AppCompatActivity {
 
     public void viewButton(View view){
         Intent viewIntent = new Intent (this, logView.class);
+        String date;
+        EditText dateInput = findViewById(R.id.dateInput);
+        if(dateInput.getText().toString().trim().equals("")){
+            date = LocalDate.now().toString();
+        }
+        else{
+            String requestedDate = dateInput.getText().toString();
+            if (isValidDate(requestedDate) == false){
+                dateErrorToast();
+                return;
+            }
+            int[] dateArray = retrieveDate(requestedDate);
+            try{
+                date = LocalDate.of(2000+ dateArray[2], dateArray[1], dateArray[0]).toString();
+            }
+            catch (DateTimeException ex){
+                dateErrorToast();
+                return;
+            }
 
-        String date = LocalDate.now().toString();
+        }
+
         viewIntent.putExtra("date", date);
 
         startActivity(viewIntent);
 
     }
 
+    private boolean isValidDate(String input){
+        String regex = "^[0-3]?[0-9]/[01]?[0-9]/[0-9]{2}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
+
+    private int[] retrieveDate(String input){
+        String[] hold = new String[3];
+        hold = input.split("/");
+        int[] output = new int[3];
+        for (int i = 0; i < 3; i++){
+            output[i] = Integer.parseInt(hold[i]);
+        }
+        return output;
+    }
+
+    private void dateErrorToast(){
+        Context context = getApplicationContext();
+        Toast toast = Toast.makeText(context, "Please enter a valid date", Toast.LENGTH_LONG);
+        toast.show();
+    }
 }
